@@ -31,6 +31,7 @@ nv.models.multiBar = function() {
         , groupSpacing = 0.1
         , fillOpacity = 0.75
         , dispatch = d3.dispatch('chartClick', 'elementClick', 'elementDblClick', 'elementMouseover', 'elementMouseout', 'elementMousemove', 'renderEnd')
+        , rangeBandCentreOffset = 0
         ;
 
     //============================================================
@@ -59,7 +60,7 @@ nv.models.multiBar = function() {
                 return false;
             };
 
-            if(hideable && data.length) hideable = [{
+            if (hideable && data.length) hideable = [{
                 values: data[0].values.map(function(d) {
                         return {
                             x: d.x,
@@ -133,6 +134,9 @@ nv.models.multiBar = function() {
 
             x.domain(xDomain || d3.merge(seriesData).map(function(d) { return d.x }))
                 .rangeBands(xRange || [0, availableWidth], groupSpacing);
+
+            // This value is exclusively used by multiChart later on to adjust lines and x-axis to align with bars.
+            rangeBandCentreOffset = x.rangeBand() / 2.0 + (groupSpacing * x.rangeBand()); // Verify groupSpacing part later.
 
             y.domain(yDomain || d3.extent(d3.merge(seriesData).map(function(d) {
                 var domain = d.y;
@@ -409,6 +413,7 @@ nv.models.multiBar = function() {
         hideable:    {get: function(){return hideable;}, set: function(_){hideable=_;}},
         groupSpacing:{get: function(){return groupSpacing;}, set: function(_){groupSpacing=_;}},
         fillOpacity: {get: function(){return fillOpacity;}, set: function(_){fillOpacity=_;}},
+        rangeBandCentreOffset: {get: function() {return rangeBandCentreOffset;}, set: function(_) {rangeBandCentreOffset = _;}},
 
         // options that require extra logic in the setter
         margin: {get: function(){return margin;}, set: function(_){
