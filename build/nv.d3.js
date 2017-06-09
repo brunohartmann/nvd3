@@ -1,4 +1,4 @@
-/* nvd3 version 1.8.5-dev (https://github.com/novus/nvd3) 2017-05-30 */
+/* nvd3 version 1.8.5-dev (https://github.com/novus/nvd3) 2017-06-09 */
 (function(){
 
 // set up main nv object
@@ -9786,8 +9786,8 @@ nv.models.multiChart = function () {
     // Because we use padData to adjust lines' outer padding so the data points line
     // up with the middle of the bars, we have to turn off voronoi because the use
     // of padData seem to cause conflict with the voronoi calculations in d3.js.
-    lines1.scatter.useVoronoi(false);
-    lines2.scatter.useVoronoi(false);
+    // lines1.scatter.useVoronoi(false);
+    // lines2.scatter.useVoronoi(false);
 
     var charts = [lines1, lines2, scatters1, scatters2, bars1, bars2, stack1, stack2];
 
