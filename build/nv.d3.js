@@ -9783,12 +9783,6 @@ nv.models.multiChart = function () {
         tooltip = nv.models.tooltip(),
         dispatch = d3.dispatch();
 
-    // Because we use padData to adjust lines' outer padding so the data points line
-    // up with the middle of the bars, we have to turn off voronoi because the use
-    // of padData seem to cause conflict with the voronoi calculations in d3.js.
-    // lines1.scatter.useVoronoi(false);
-    // lines2.scatter.useVoronoi(false);
-
     var charts = [lines1, lines2, scatters1, scatters2, bars1, bars2, stack1, stack2];
 
     function chart(selection) {
@@ -9874,11 +9868,11 @@ nv.models.multiChart = function () {
 
             gEnter.append('g').attr('class', 'nv-x nv-axis');
             gEnter.append('g').attr('class', 'nv-y1 nv-axis');
-            gEnter.append('g').attr('class', 'nv-y2 nv-axis');
-            gEnter.append('g').attr('class', 'stack1Wrap');
-            gEnter.append('g').attr('class', 'stack2Wrap');
+            gEnter.append('g').attr('class', 'nv-y2 nv-axis');            
             gEnter.append('g').attr('class', 'bars1Wrap');
             gEnter.append('g').attr('class', 'bars2Wrap');
+            gEnter.append('g').attr('class', 'stack1Wrap');
+            gEnter.append('g').attr('class', 'stack2Wrap');
             gEnter.append('g').attr('class', 'scatters1Wrap');
             gEnter.append('g').attr('class', 'scatters2Wrap');
             gEnter.append('g').attr('class', 'lines1Wrap');
