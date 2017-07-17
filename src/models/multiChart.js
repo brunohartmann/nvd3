@@ -40,8 +40,8 @@ nv.models.multiChart = function () {
         yScale1 = d3.scale.linear(),
         yScale2 = d3.scale.linear(),
 
-        lines1 = nv.models.line().yScale(yScale1).duration(duration),
-        lines2 = nv.models.line().yScale(yScale2).duration(duration),
+        lines1 = nv.models.line(0).yScale(yScale1).duration(duration),
+        lines2 = nv.models.line(0).yScale(yScale2).duration(duration),
 
         scatters1 = nv.models.scatter().yScale(yScale1).duration(duration),
         scatters2 = nv.models.scatter().yScale(yScale2).duration(duration),

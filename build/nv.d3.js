@@ -1,4 +1,4 @@
-/* nvd3 version 1.9.5 (https://github.com/novus/nvd3) 2017-07-17 */
+/* nvd3 version 1.9.6 (https://github.com/novus/nvd3) 2017-07-17 */
 (function(){
 
 // set up main nv object
@@ -6539,7 +6539,7 @@ nv.models.legend = function() {
     return chart;
 };
 
-nv.models.line = function() {
+nv.models.line = function(translateValue) {
     "use strict";
     //============================================================
     // Public Variables with Default Settings
@@ -6632,9 +6632,10 @@ nv.models.line = function() {
             scatterWrap
                 .attr('clip-path', clipEdge ? 'url(#nv-edge-clip-' + scatter.id() + ')' : '');
 
+            var tValue = translateValue || 20;
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function(d) { return d }, function(d) { return d.key });
-            wrap.select('.nv-groups').attr('transform', 'translate(0,' + 20 + ')');
+            wrap.select('.nv-groups').attr('transform', 'translate(0,' + tValue + ')');
             
             groups.enter().append('g')
                 .style('stroke-opacity', 1e-6)
@@ -9930,8 +9931,8 @@ nv.models.multiChart = function () {
         yScale1 = d3.scale.linear(),
         yScale2 = d3.scale.linear(),
 
-        lines1 = nv.models.line().yScale(yScale1).duration(duration),
-        lines2 = nv.models.line().yScale(yScale2).duration(duration),
+        lines1 = nv.models.line(0).yScale(yScale1).duration(duration),
+        lines2 = nv.models.line(0).yScale(yScale2).duration(duration),
 
         scatters1 = nv.models.scatter().yScale(yScale1).duration(duration),
         scatters2 = nv.models.scatter().yScale(yScale2).duration(duration),
@@ -17397,6 +17398,6 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.9.5";
+nv.version = "1.9.6";
 })();
 //# sourceMappingURL=nv.d3.js.map

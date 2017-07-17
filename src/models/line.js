@@ -1,5 +1,5 @@
 
-nv.models.line = function() {
+nv.models.line = function(translateValue) {
     "use strict";
     //============================================================
     // Public Variables with Default Settings
@@ -92,9 +92,10 @@ nv.models.line = function() {
             scatterWrap
                 .attr('clip-path', clipEdge ? 'url(#nv-edge-clip-' + scatter.id() + ')' : '');
 
+            var tValue = translateValue || 20;
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function(d) { return d }, function(d) { return d.key });
-            wrap.select('.nv-groups').attr('transform', 'translate(0,' + 20 + ')');
+            wrap.select('.nv-groups').attr('transform', 'translate(0,' + tValue + ')');
             
             groups.enter().append('g')
                 .style('stroke-opacity', 1e-6)
