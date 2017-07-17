@@ -531,6 +531,9 @@ nv.models.scatter = function () {
                 .attr('class', function (d, i) {
                     return (d.classed || '') + ' nv-group nv-series-' + i;
                 })
+                .attr('transform', function (d, i) {
+                    return 'translate(0,' + 20 + ')';
+                })
                 .classed('nv-noninteractive', !interactive)
                 .classed('hover', function (d) {
                     return d.hover

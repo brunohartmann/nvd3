@@ -68,7 +68,7 @@ nv.models.line = function() {
             var gEnter = wrapEnter.append('g');
             var g = wrap.select('g');
 
-            gEnter.append('g').attr('class', 'nv-groups');
+            gEnter.append('g').attr('class', 'nv-groups').attr('transform', 'translate(0,' + 20 + ')');
             gEnter.append('g').attr('class', 'nv-scatterWrap');
 
             wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -86,7 +86,7 @@ nv.models.line = function() {
 
             wrap.select('#nv-edge-clip-' + scatter.id() + ' rect')
                 .attr('width', availableWidth)
-                .attr('height', (availableHeight > 0) ? availableHeight : 0);
+                .attr('height', (availableHeight > 0) ? availableHeight + 50 : 0);
 
             g   .attr('clip-path', clipEdge ? 'url(#nv-edge-clip-' + scatter.id() + ')' : '');
             scatterWrap
@@ -94,6 +94,8 @@ nv.models.line = function() {
 
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function(d) { return d }, function(d) { return d.key });
+            wrap.select('.nv-groups').attr('transform', 'translate(0,' + 20 + ')');
+            
             groups.enter().append('g')
                 .style('stroke-opacity', 1e-6)
                 .style('stroke-width', function(d) { return d.strokeWidth || strokeWidth })
@@ -105,12 +107,14 @@ nv.models.line = function() {
                 .attr('class', function(d,i) {
                     return (d.classed || '') + ' nv-group nv-series-' + i;
                 })
+                              
                 .classed('hover', function(d) { return d.hover })
                 .style('fill', function(d,i){ return color(d, i) })
                 .style('stroke', function(d,i){ return color(d, i)});
             groups.watchTransition(renderWatch, 'line: groups')
                 .style('stroke-opacity', 1)
-                .style('fill-opacity', function(d) { return d.fillOpacity || .5});
+                .style('fill-opacity', function(d) { return d.fillOpacity || .5})
+               
 
             var areaPaths = groups.selectAll('path.nv-area')
                 .data(function(d) { return isArea(d) ? [d] : [] }); // this is done differently than lines because I need to check if series is an area
