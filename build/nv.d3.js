@@ -1,4 +1,4 @@
-/* nvd3 version 1.9.4 (https://github.com/novus/nvd3) 2017-07-17 */
+/* nvd3 version 1.9.5 (https://github.com/novus/nvd3) 2017-07-17 */
 (function(){
 
 // set up main nv object
@@ -17397,6 +17397,6 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.9.4";
+nv.version = "1.9.5";
 })();
 //# sourceMappingURL=nv.d3.js.map
