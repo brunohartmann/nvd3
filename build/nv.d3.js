@@ -1,4 +1,4 @@
-/* nvd3 version 1.9.6 (https://github.com/novus/nvd3) 2017-07-17 */
+/* nvd3 version 1.9.7 (https://github.com/novus/nvd3) 2017-07-19 */
 (function(){
 
 // set up main nv object
@@ -6632,7 +6632,7 @@ nv.models.line = function(translateValue) {
             scatterWrap
                 .attr('clip-path', clipEdge ? 'url(#nv-edge-clip-' + scatter.id() + ')' : '');
 
-            var tValue = translateValue || 20;
+            var tValue = translateValue ?  translateValue : 20;
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function(d) { return d }, function(d) { return d.key });
             wrap.select('.nv-groups').attr('transform', 'translate(0,' + tValue + ')');
@@ -17398,6 +17398,6 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.9.6";
+nv.version = "1.9.7";
 })();
 //# sourceMappingURL=nv.d3.js.map
