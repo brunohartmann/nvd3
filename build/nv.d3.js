@@ -1,4 +1,4 @@
-/* nvd3 version 1.9.8 (https://github.com/novus/nvd3) 2017-07-19 */
+/* nvd3 version 1.9.9 (https://github.com/novus/nvd3) 2017-07-19 */
 (function(){
 
 // set up main nv object
@@ -6545,7 +6545,7 @@ nv.models.line = function(translateValue) {
     // Public Variables with Default Settings
     //------------------------------------------------------------
 
-    var  scatter = nv.models.scatterLine()
+    var  scatter = nv.models.scatterLine(translateValue)
         ;
 
     var margin = {top: 0, right: 0, bottom: 0, left: 0}
@@ -14469,7 +14469,7 @@ nv.models.scatterChart = function() {
     nv.utils.initOptions(chart);
     return chart;
 };
-nv.models.scatterLine = function () {
+nv.models.scatterLine = function (translateValue) {
     "use strict";
 
     //============================================================
@@ -14987,6 +14987,7 @@ nv.models.scatterLine = function () {
             }
 
             needsUpdate = true;
+            var tValue = (translateValue !== null && translateValue !== undefined) ?  translateValue : 20;
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function (d) {
                     return d
@@ -15003,7 +15004,7 @@ nv.models.scatterLine = function () {
                     return (d.classed || '') + ' nv-group nv-series-' + i;
                 })
                 .attr('transform', function (d, i) {
-                    return 'translate(0,' + 20 + ')';
+                    return 'translate(0,' + tValue + ')';
                 })
                 .classed('nv-noninteractive', !interactive)
                 .classed('hover', function (d) {
@@ -17399,6 +17400,6 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.9.8";
+nv.version = "1.9.9";
 })();
 //# sourceMappingURL=nv.d3.js.map

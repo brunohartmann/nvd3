@@ -1,4 +1,4 @@
-nv.models.scatterLine = function () {
+nv.models.scatterLine = function (translateValue) {
     "use strict";
 
     //============================================================
@@ -516,6 +516,7 @@ nv.models.scatterLine = function () {
             }
 
             needsUpdate = true;
+            var tValue = (translateValue !== null && translateValue !== undefined) ?  translateValue : 20;
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function (d) {
                     return d
@@ -532,7 +533,7 @@ nv.models.scatterLine = function () {
                     return (d.classed || '') + ' nv-group nv-series-' + i;
                 })
                 .attr('transform', function (d, i) {
-                    return 'translate(0,' + 20 + ')';
+                    return 'translate(0,' + tValue + ')';
                 })
                 .classed('nv-noninteractive', !interactive)
                 .classed('hover', function (d) {
