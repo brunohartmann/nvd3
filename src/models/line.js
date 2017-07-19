@@ -67,8 +67,9 @@ nv.models.line = function(translateValue) {
             var defsEnter = wrapEnter.append('defs');
             var gEnter = wrapEnter.append('g');
             var g = wrap.select('g');
-
-            gEnter.append('g').attr('class', 'nv-groups').attr('transform', 'translate(0,' + 20 + ')');
+            var tValue = (translateValue !== null && translateValue !== undefined) ?  translateValue : 20;
+            
+            gEnter.append('g').attr('class', 'nv-groups').attr('transform', 'translate(0,' + tValue + ')');
             gEnter.append('g').attr('class', 'nv-scatterWrap');
 
             wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -92,7 +93,7 @@ nv.models.line = function(translateValue) {
             scatterWrap
                 .attr('clip-path', clipEdge ? 'url(#nv-edge-clip-' + scatter.id() + ')' : '');
 
-            var tValue = translateValue ?  translateValue : 20;
+           
             var groups = wrap.select('.nv-groups').selectAll('.nv-group')
                 .data(function(d) { return d }, function(d) { return d.key });
             wrap.select('.nv-groups').attr('transform', 'translate(0,' + tValue + ')');
