@@ -86,7 +86,7 @@ nv.models.multiBar = function() {
                         // don't stack this seires on top of the nonStackable seriees
                         if (i > 0 && parsed[i - 1].nonStackable){
                             parsed[i].values.map(function(d,j){
-                                d.y0 -= parsed[i - 1].values[j].y;
+                                d.y0 -= (parsed[i - 1].values[j].y !== undefined && parsed[i - 1].values[j].y !== null) ? parsed[i - 1].values[j].y : 0 ;
                                 d.y1 = d.y0 + d.y;
                             });
                         }

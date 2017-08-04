@@ -1,4 +1,4 @@
-/* nvd3 version 1.9.9 (https://github.com/novus/nvd3) 2017-07-19 */
+/* nvd3 version 2.0.0 (https://github.com/novus/nvd3) 2017-08-04 */
 (function(){
 
 // set up main nv object
@@ -8248,7 +8248,7 @@ nv.models.multiBar = function() {
                         // don't stack this seires on top of the nonStackable seriees
                         if (i > 0 && parsed[i - 1].nonStackable){
                             parsed[i].values.map(function(d,j){
-                                d.y0 -= parsed[i - 1].values[j].y;
+                                d.y0 -= (parsed[i - 1].values[j].y !== undefined && parsed[i - 1].values[j].y !== null) ? parsed[i - 1].values[j].y : 0 ;
                                 d.y1 = d.y0 + d.y;
                             });
                         }
@@ -17400,6 +17400,6 @@ nv.models.sunburstChart = function() {
 
 };
 
-nv.version = "1.9.9";
+nv.version = "2.0.0";
 })();
 //# sourceMappingURL=nv.d3.js.map
